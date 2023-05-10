@@ -12,6 +12,7 @@ public class movement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = false;
 
+    CapsuleCollider2D CapsulPlayer;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,11 +33,11 @@ public class movement : MonoBehaviour
         {
             if (moveInput > 0)
             {
-                transform.localScale = new Vector2(1f, 1f); // tourne le personnage à droite
+                transform.localScale = new Vector2(0.53f, 0.53f); // tourne le personnage à droite
             }
             else
             {
-                transform.localScale = new Vector2(-1f, 1f); // tourne le personnage à gauche
+                transform.localScale = new Vector2(-0.53f, 0.53f); // tourne le personnage à gauche
             }
         }
 
@@ -47,4 +48,29 @@ public class movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+
+
+        isGrounded = true;
+        CapsulPlayer.sharedMaterial.friction = 10;
+        CapsulPlayer.enabled = false;
+        CapsulPlayer.enabled = true;
+
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isGrounded = false;
+        CapsulPlayer.sharedMaterial.friction = 0;
+        CapsulPlayer.enabled = false;
+        CapsulPlayer.enabled = true;
+
+
+    }
+
 }
