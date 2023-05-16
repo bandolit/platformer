@@ -136,7 +136,10 @@ GameObject:
   - component: {fileID: 15471670}
   - component: {fileID: 15471669}
   - component: {fileID: 15471674}
+<<<<<<< Updated upstream
   - component: {fileID: 15471675}
+=======
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: mechant
   m_TagString: Untagged
@@ -246,13 +249,19 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15471668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.65, z: 1}
+=======
+  m_LocalPosition: {x: 0.02, y: -0.06, z: 0}
+  m_LocalScale: {x: 0.4068991, y: 0.4068991, z: 0.4068991}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 908644885}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!61 &15471674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,6 +289,9 @@ BoxCollider2D:
   m_Size: {x: 2.7738266, y: 2.1807065}
   m_EdgeRadius: 0
 --- !u!114 &15471675
+=======
+--- !u!114 &15471674
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6265,6 +6277,7 @@ GameObject:
   - component: {fileID: 908644884}
   - component: {fileID: 908644883}
   - component: {fileID: 908644886}
+  - component: {fileID: 908644887}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -6288,7 +6301,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 6
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -6372,6 +6385,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 1721526903}
+--- !u!65 &908644887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908644882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5412645, y: 1.1403279, z: 1}
+  m_Center: {x: 0.020046711, y: 0.070163965, z: 0}
 --- !u!1 &1089771467
 GameObject:
   m_ObjectHideFlags: 0
@@ -13009,6 +13035,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5192040330567170376, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192040330567170376, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192040330567170376, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192040330567170376, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -13048,6 +13086,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 5192040330567170377, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
       propertyPath: m_Size.x
       value: 19.2
@@ -13055,11 +13094,24 @@ PrefabInstance:
     - target: {fileID: 5192040330567170377, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
       propertyPath: m_Size.y
       value: 10.8
+=======
+    - target: {fileID: 5192040330567170376, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5192040330567170377, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
       propertyPath: m_Sprite
       value: 
+<<<<<<< Updated upstream
       objectReference: {fileID: 21300000, guid: 302e43d420e07464f9615cdcdc074dff, type: 3}
+=======
+      objectReference: {fileID: 21300000, guid: 574d6f489372b97459118c9b5f46b37a, type: 3}
+    - target: {fileID: 5192040330567170378, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
+      propertyPath: jumpForce
+      value: 12
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 5192040330567170378, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
       propertyPath: moveSpeed
       value: 10
@@ -13072,6 +13124,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 5192040330567170423, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
       propertyPath: m_Material
       value: 
@@ -13086,4 +13139,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5192040330567170420, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
+=======
+    - target: {fileID: 5192040330567170422, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
+      propertyPath: dashCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+>>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: d56c3ae9c84de3a4abe5869728f7aece, type: 3}
