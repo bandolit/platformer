@@ -25,7 +25,7 @@ public class enemy : MonoBehaviour
         {
             //EnnemyHealth ennemyHealth = GetComponent<EnnemyHealth>();
             //ennemyHealth.TakeDamage(100);
-            GetComponent<EnnemyHealth>().TakeDamage(100);
+            GetComponent<EnnemyHealth>().TakeDamage(50);
             Debug.Log("th");
         }
     }

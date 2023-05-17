@@ -13,6 +13,8 @@ public class movement : MonoBehaviour
     private bool isGrounded = false;
 
     CapsuleCollider2D CapsulPlayer;
+
+    public bool canJump = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,7 +45,7 @@ public class movement : MonoBehaviour
 
 
         // saut
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && canJump == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
