@@ -19,4 +19,14 @@ public class enemy : MonoBehaviour
             transform.localScale = new Vector3 (0.4068991f, 0.4068991f, 0.4068991f);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Dash>().isDashing==true)  
+        {
+            //EnnemyHealth ennemyHealth = GetComponent<EnnemyHealth>();
+            //ennemyHealth.TakeDamage(100);
+            GetComponent<EnnemyHealth>().TakeDamage(100);
+            Debug.Log("th");
+        }
+    }
 }

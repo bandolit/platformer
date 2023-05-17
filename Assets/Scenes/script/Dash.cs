@@ -7,6 +7,7 @@ public class Dash : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField] private TrailRenderer tr;
+    public bool isDashing;
     float horizontal_value;
     float vertical_value;
     [SerializeField] float moveSpeed_horizontal = 400.0f;
@@ -61,6 +62,9 @@ public class Dash : MonoBehaviour
                 // Mettre en place le temps de recharge du dash
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
+                isDashing = true;
+                StartCoroutine(Dashing());
+                
             }
 
         }
@@ -68,6 +72,12 @@ public class Dash : MonoBehaviour
         {
             tr.emitting = false;
         }
+    }
+    
+    private IEnumerator Dashing()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isDashing = false;
     }
     void FixedUpdate()
     {
@@ -85,12 +95,11 @@ public class Dash : MonoBehaviour
             // Réinitialiser la direction du dash
             dashDirection = Vector2.zero;
         }
-        // Sinon, déplacer le joueur normalement
+        // Sinon, deplacer le joueur normalement
         else
         {
             Vector2 target_velocity = new Vector2(horizontal_value * moveSpeed_horizontal * Time.fixedDeltaTime, rb.velocity.y);
             return;
-
         }
     }
 }
