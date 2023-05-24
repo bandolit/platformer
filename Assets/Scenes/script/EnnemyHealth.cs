@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerHealth : MonoBehaviour
+public class EnnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
@@ -22,6 +22,10 @@ public class playerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             TakeDamage(50);
+        }
+        if (currentHealth <= 0)
+        {
+            Destroy(GameObject.Find("Ennemi_volant"));
         }
     }
 

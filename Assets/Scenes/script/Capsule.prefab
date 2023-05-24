@@ -109,6 +109,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
+  canJump: 1
 --- !u!50 &5192040330567170423
 Rigidbody2D:
   serializedVersion: 4
@@ -276,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tr: {fileID: 5192040330567170379}
+  isDashing: 0
   moveSpeed_horizontal: 400
   moveSpeed: 5
   dashDistance: 5

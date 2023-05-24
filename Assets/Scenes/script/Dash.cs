@@ -63,6 +63,7 @@ public class Dash : MonoBehaviour
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
                 isDashing = true;
+
                 StartCoroutine(Dashing());
                 
             }
@@ -76,9 +77,10 @@ public class Dash : MonoBehaviour
     
     private IEnumerator Dashing()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         isDashing = false;
     }
+    
     void FixedUpdate()
     {
         // Si le joueur est en train de dasher, le déplacer

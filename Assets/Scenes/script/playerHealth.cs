@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class EnnemyHealth : MonoBehaviour
+public class playerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
@@ -13,7 +14,6 @@ public class EnnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        HealthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -23,15 +23,21 @@ public class EnnemyHealth : MonoBehaviour
         {
             TakeDamage(50);
         }
-        if (currentHealth <= 0)
-        {
-            Destroy(GameObject.Find("Ennemi"));
-        }
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        HealthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+
     }
+
+    
+    
+
+
 }

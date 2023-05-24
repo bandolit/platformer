@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
+    public const float V = 10f;
     public float moveSpeed = 5f; // vitesse de déplacement
     public float jumpForce = 10f; // force de saut
     public Transform groundCheck; // objet qui vérifie si le joueur touche le sol
@@ -56,9 +57,8 @@ public class movement : MonoBehaviour
     {
 
 
-
         isGrounded = true;
-        CapsulPlayer.sharedMaterial.friction = 10;
+        CapsulPlayer.sharedMaterial.friction = V;
         CapsulPlayer.enabled = false;
         CapsulPlayer.enabled = true;
 
