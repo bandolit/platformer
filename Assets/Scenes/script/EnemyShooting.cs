@@ -41,6 +41,17 @@ public class EnemyShooting : MonoBehaviour
 
     void shoot()
     {
+        //if (EH.isDead == true)
+
+        //{
+        //    GameObject.Find("mechant").GetComponent<>
+
+        //}
+        //else
+        //{ 
+            
+        //}
+
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
 
     }

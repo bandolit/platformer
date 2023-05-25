@@ -48,7 +48,6 @@ public class EnemyBulletScript : MonoBehaviour
         {
             Debug.Log("t mort fdp");
             other.gameObject.GetComponent<playerHealth>().TakeDamage(100);
-            Destroy(gameObject);
         }
     }
 

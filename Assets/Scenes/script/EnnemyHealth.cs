@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnnemyHealth : MonoBehaviour
 {
+
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -25,8 +26,10 @@ public class EnnemyHealth : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            Destroy(GameObject.Find("Ennemi_volant"));
+            Object.Destroy(gameObject);
         }
+
+
     }
 
     public void TakeDamage(int damage)
@@ -34,4 +37,6 @@ public class EnnemyHealth : MonoBehaviour
         currentHealth -= damage;
         HealthBar.SetHealth(currentHealth);
     }
+
+    
 }

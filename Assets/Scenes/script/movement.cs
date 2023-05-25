@@ -68,7 +68,7 @@ public class movement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         isGrounded = false;
-        CapsulPlayer.sharedMaterial.friction = 0;
+        CapsulPlayer.sharedMaterial.friction = V;
         CapsulPlayer.enabled = false;
         CapsulPlayer.enabled = true;
 

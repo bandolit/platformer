@@ -63,7 +63,7 @@ public class Dash : MonoBehaviour
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
                 isDashing = true;
-
+                this.GetComponentInParent<playerHealth>().imune = true;
                 StartCoroutine(Dashing());
                 
             }
@@ -79,6 +79,7 @@ public class Dash : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         isDashing = false;
+        this.GetComponentInParent<playerHealth>().imune = false ;
     }
     
     void FixedUpdate()

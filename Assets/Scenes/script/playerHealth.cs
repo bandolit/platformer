@@ -7,6 +7,7 @@ public class playerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    public bool imune;
 
     public HealthBar HealthBar;
 
@@ -28,16 +29,16 @@ public class playerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && imune == false)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-
+        
     }
 
-    
-    
+
+
 
 
 }
