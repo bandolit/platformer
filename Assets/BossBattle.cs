@@ -15,25 +15,24 @@ public class BossBattle : MonoBehaviour
     [SerializeField] private ColliderTrigger colliderTrigger;
     [SerializeField] private GameObject Boss;
 
-    [SerializeField] private EnemySpawn pfEnemyShooterSpawn;
+    [SerializeField] private GameObject pfEnemyShooterSpawn;
 
 
     [SerializeField] private GameObject shield_1;
     [SerializeField] private GameObject shield_2;
 
-    [SerializeField] private List<EnemySpawn> enemySpawnList;
-    [SerializeField] private List<Vector3> spawnPositionList;
+    [SerializeField] private List<GameObject> enemySpawnList;
+    [SerializeField] private List<Transform> spawnPositionList;
     private Stage stage;
 
     private void Awake()
     {
-        enemySpawnList = new List<EnemySpawn>();
-        spawnPositionList = new List<Vector3>();
+        enemySpawnList = new List<GameObject>();
 
-        foreach (Transform spawnPosition in transform.Find("spawnPositions"))
-        {
-            spawnPositionList.Add(spawnPosition.position);
-        }
+        //foreach (Transform spawnPosition in transform.Find("spawnPositions"))
+        //{
+        //    spawnPositionList.Add(spawnPosition.position);
+        //}
 
         stage = Stage.WaitingToStart;
     }
@@ -105,6 +104,7 @@ public class BossBattle : MonoBehaviour
                 SpawnEnemy();
 
                 break;
+
             case Stage.Stage_2:
                 stage = Stage.Stage_3;
                 shield_2.SetActive(true);
@@ -119,28 +119,29 @@ public class BossBattle : MonoBehaviour
     private void SpawnEnemy()
     {
         int aliveCount = 0;
-        foreach (EnemySpawn enemySpawned in enemySpawnList)
+        foreach (GameObject enemySpawned in enemySpawnList)
         {
-            if (enemySpawned.IsAlive())
+            if (!enemySpawned.GetComponent<EnemySpawn>().IsAlive())
             {
-                // Enemy alive
-                aliveCount++;
-                if (aliveCount >= 10)
-                {
-                    // Don't spawn more enemies
-                    return;
-                }
+                continue;
+            }
+            // Enemy alive
+            aliveCount++;
+            if (aliveCount >= 10)
+            {
+                // Don't spawn more enemies
+                return;
             }
         }
 
-        Vector3 spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
+        Transform spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
 
-        EnemySpawn pfEnemySpawn;
+        //EnemySpawn pfEnemySpawn;
 
-        pfEnemySpawn = pfEnemyShooterSpawn;
+        //pfEnemySpawn = pfEnemyShooterSpawn;
 
-        EnemySpawn enemySpawn = Instantiate(pfEnemySpawn, spawnPosition, Quaternion.identity);
-        enemySpawn.Spawn();
+        GameObject enemySpawn = Instantiate(pfEnemyShooterSpawn, spawnPosition.position, Quaternion.identity);
+        //enemySpawn.Spawn();
 
         enemySpawnList.Add(enemySpawn);
     }
@@ -149,12 +150,12 @@ public class BossBattle : MonoBehaviour
 
     private void DestroyAllEnemies()
     {
-        foreach (EnemySpawn enemySpawn in enemySpawnList)
+        foreach (GameObject enemySpawn in enemySpawnList)
         {
-            if (enemySpawn.IsAlive())
-            {
-                enemySpawn.KillEnemy();
-            }
+            //if (enemySpawn.IsAlive())
+            //{
+            //    enemySpawn.KillEnemy();
+            //}
         }
     }
 }

@@ -17,7 +17,7 @@ public class Dash : MonoBehaviour
     // Distance maximale de deplacement lors du dash
     public float dashDistance = 5f;
     // Temps de recharge du dash en secondes
-    public float dashCooldown = 1f;
+    public float dashCooldown = 0f;
     // Direction du dash
     private Vector2 dashDirection;
     // Temps restant avant de pouvoir utiliser le dash à nouveau
@@ -48,7 +48,7 @@ public class Dash : MonoBehaviour
             Vector2 direction = new Vector2(horizontal, vertical).normalized;
 
             // Si le joueur appuie sur la touche de dash et que la direction est valide
-            if (Input.GetKeyDown(KeyCode.LeftShift) && direction != Vector2.zero)
+            if (Input.GetButtonDown("Dash") && Input.GetKeyDown(KeyCode.LeftShift) && direction != Vector2.zero)
             {
                 // Normaliser la direction pour éviter les deplacements excessifs en diagonale
                 if (direction.magnitude > 1f)
@@ -63,13 +63,14 @@ public class Dash : MonoBehaviour
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
                 isDashing = true;
+                //devenir invincible pendant le Dash
                 this.GetComponentInParent<playerHealth>().imune = true;
                 StartCoroutine(Dashing());
                 
             }
 
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetButtonUp("Dash") && Input.GetKeyUp(KeyCode.LeftShift))
         {
             tr.emitting = false;
         }
