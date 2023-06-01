@@ -23,7 +23,14 @@ public class BossBattle : MonoBehaviour
 
     [SerializeField] private List<GameObject> enemySpawnList;
     [SerializeField] private List<Transform> spawnPositionList;
-    private Stage stage;
+    List<Transform> PastspawnPosition;
+    [SerializeField] private Stage stage;
+
+    [SerializeField] private GameObject batt1;
+    [SerializeField] private GameObject batt2;
+    [SerializeField] private GameObject batt3;
+    [SerializeField] private GameObject batt4;
+
 
     private void Awake()
     {
@@ -42,9 +49,23 @@ public class BossBattle : MonoBehaviour
         StartBattle();
         shield_1.SetActive(false);
         shield_2.SetActive(false);
+
     }
 
-    private void BossBattle_OnDead(object sender, System.EventArgs e)
+    private void FixedUpdate()
+    {
+        foreach (GameObject Enemy in enemySpawnList)
+        {
+            if (false == Enemy.activeInHierarchy)
+            {
+                SpawnEnemy();
+            }
+        }
+        BossBattle_OnDamaged();
+       
+    }
+
+    private void BossBattle_OnDead()
     {
         // Boss dead! Boss battle over!
         Debug.Log("Boss Battle Over!");
@@ -52,7 +73,7 @@ public class BossBattle : MonoBehaviour
         DestroyAllEnemies();
     }
 
-    private void BossBattle_OnDamaged(object sender, System.EventArgs e)
+    private void BossBattle_OnDamaged()
     {
         // Boss took damage
         switch (stage)
@@ -64,14 +85,21 @@ public class BossBattle : MonoBehaviour
 
                     StartNextStage();
                 }
-                
                 break;
+
             case Stage.Stage_2:
 
                 if (Boss.GetComponent<BossHealth>().currentHealth <= 300)
                 {
                     // Boss under 30% health
-
+                    batt1.GetComponent<BattHealth>().currentHealth = 100;
+                    batt2.GetComponent<BattHealth>().currentHealth = 100;
+                    batt3.GetComponent<BattHealth>().currentHealth = 100;
+                    batt4.GetComponent<BattHealth>().currentHealth = 100;
+                    batt1.GetComponentInChildren<HealthBar>().SetHealth(100);
+                    batt2.GetComponentInChildren<HealthBar>().SetHealth(100);
+                    batt3.GetComponentInChildren<HealthBar>().SetHealth(100);
+                    batt4.GetComponentInChildren<HealthBar>().SetHealth(100);
                     StartNextStage();
                 }
                 break;
@@ -100,17 +128,14 @@ public class BossBattle : MonoBehaviour
             case Stage.Stage_1:
                 stage = Stage.Stage_2;
                 shield_1.SetActive(true);
-                SpawnEnemy();
-                SpawnEnemy();
+
 
                 break;
 
             case Stage.Stage_2:
                 stage = Stage.Stage_3;
+                Debug.Log("WTF");
                 shield_2.SetActive(true);
-                SpawnEnemy();
-                SpawnEnemy();
-                SpawnEnemy();
                 break;
         }
         Debug.Log("Starting next stage: " + stage);
@@ -119,43 +144,44 @@ public class BossBattle : MonoBehaviour
     private void SpawnEnemy()
     {
         int aliveCount = 0;
-        foreach (GameObject enemySpawned in enemySpawnList)
+        foreach (GameObject Enemy in enemySpawnList)
         {
-            if (!enemySpawned.GetComponent<EnemySpawn>().IsAlive())
-            {
-                continue;
-            }
             // Enemy alive
             aliveCount++;
-            if (aliveCount >= 10)
+            if (aliveCount >= 3)
             {
                 // Don't spawn more enemies
                 return;
             }
         }
 
-        Transform spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
+        //Transform spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
 
-        //EnemySpawn pfEnemySpawn;
+        //foreach (Transform Spawn in PastspawnPosition)
+        //{
+        //    if (spawnPosition == Spawn)
+        //    {
+        //        spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
+        //    }
+        //}
+        
 
-        //pfEnemySpawn = pfEnemyShooterSpawn;
-
-        GameObject enemySpawn = Instantiate(pfEnemyShooterSpawn, spawnPosition.position, Quaternion.identity);
+        //GameObject enemySpawn = Instantiate(pfEnemyShooterSpawn, spawnPosition.position, Quaternion.identity);
         //enemySpawn.Spawn();
-
-        enemySpawnList.Add(enemySpawn);
+        //enemySpawnList.Add(enemySpawn);
     }
 
 
 
     private void DestroyAllEnemies()
     {
-        foreach (GameObject enemySpawn in enemySpawnList)
+        foreach (GameObject Enemy in enemySpawnList)
         {
-            //if (enemySpawn.IsAlive())
-            //{
-            //    enemySpawn.KillEnemy();
-            //}
+            if (Enemy.GetComponent<EnemySpawn>().IsAlive())
+            {
+                Enemy.GetComponent<EnemySpawn>().KillEnemy();
+            }
         }
     }
+
 }

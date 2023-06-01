@@ -8,24 +8,29 @@ public class BossHealth : MonoBehaviour
     public int currentHealth;
     public bool imune;
 
-    public HealthBar HealthBar;
+    public HealthBar Hb;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        Hb.SetMaxHealth(maxHealth);
     }
 
 
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0 && imune == false)
+        if (imune == false)
         {
-            Destroy(gameObject);
-        }
+            currentHealth -= damage;
+            Hb.SetHealth(currentHealth);
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
 
+        }
 
     }
 }

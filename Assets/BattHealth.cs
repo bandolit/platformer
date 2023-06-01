@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyHealth : MonoBehaviour
+public class BattHealth : MonoBehaviour
 {
 
     public int maxHealth = 100;
     public int currentHealth;
 
     public HealthBar HealthBar;
-    public GameObject Enemy;
+    public GameObject Batt;
+
+    public Protection prot;
+
+    public BossBattle BB;
+    public bool BattDeactivated = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +33,13 @@ public class EnnemyHealth : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            
-            Enemy.SetActive(false);
+
+            prot.NbrBatCas++;
+            gameObject.SetActive(false);
+            //Debug.Log("Nombre de batterie désactivé pour l'instant est de: " + BB.somme);
+            //BB.BattNumber();
+            //BattDeactivated = true;
+            //Debug.Log("waw, I don't sert à quelque chose");
 
         }
 
@@ -42,7 +53,7 @@ public class EnnemyHealth : MonoBehaviour
         {
             //EnnemyHealth ennemyHealth = GetComponent<EnnemyHealth>();
             //ennemyHealth.TakeDamage(100);
-            GetComponent<EnnemyHealth>().TakeDamage(50);
+            GetComponent<BattHealth>().TakeDamage(50);
             Debug.Log("th");
         }
     }
@@ -55,5 +66,5 @@ public class EnnemyHealth : MonoBehaviour
         HealthBar.SetHealth(currentHealth);
     }
 
-    
+
 }

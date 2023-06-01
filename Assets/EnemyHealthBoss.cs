@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyHealth : MonoBehaviour
+public class EnemyHealthBoss : MonoBehaviour
 {
-
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -27,7 +26,7 @@ public class EnnemyHealth : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            
+
             Enemy.SetActive(false);
 
         }
@@ -35,25 +34,10 @@ public class EnnemyHealth : MonoBehaviour
 
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Dash>().isDashing == true)
-        {
-            //EnnemyHealth ennemyHealth = GetComponent<EnnemyHealth>();
-            //ennemyHealth.TakeDamage(100);
-            GetComponent<EnnemyHealth>().TakeDamage(50);
-            Debug.Log("th");
-        }
-    }
-
-
-
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         HealthBar.SetHealth(currentHealth);
     }
 
-    
 }

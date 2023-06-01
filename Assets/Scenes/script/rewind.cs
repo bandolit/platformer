@@ -22,7 +22,7 @@ public class rewind : MonoBehaviour
         {
             tabPositions.Add(transform.position);
             tabRotations.Add(spriteRenderer.flipX);
-            Debug.Log("Tab[0] = " + tabPositions[0] + " " + tabPositions.Count);
+            //Debug.Log("Tab[0] = " + tabPositions[0] + " " + tabPositions.Count);
             if (tabPositions.Count >= 2000)
             {
                 tabPositions.RemoveAt(0);

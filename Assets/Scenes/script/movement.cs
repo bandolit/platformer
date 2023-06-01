@@ -46,7 +46,7 @@ public class movement : MonoBehaviour
 
 
         // saut
-        if (Input.GetButtonDown("Jump") && Input.GetKeyDown(KeyCode.Space) && isGrounded && canJump == true)
+        if (Input.GetButtonDown("Jump")  && isGrounded && canJump == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }

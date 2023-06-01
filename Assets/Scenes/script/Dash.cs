@@ -7,7 +7,7 @@ public class Dash : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField] private TrailRenderer tr;
-    public bool isDashing;
+    public bool isDashing = false;
     float horizontal_value;
     float vertical_value;
     [SerializeField] float moveSpeed_horizontal = 400.0f;
@@ -23,11 +23,16 @@ public class Dash : MonoBehaviour
     // Temps restant avant de pouvoir utiliser le dash à nouveau
     private float dashCooldownTimer = 0f;
 
+    public Sprite defaultSprite;
+    public Sprite dashSprite;
+    private SpriteRenderer spriteRenderer;
+    private Transform spriteTransform;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+       
     }
 
     // Update is called once per frame
@@ -48,7 +53,7 @@ public class Dash : MonoBehaviour
             Vector2 direction = new Vector2(horizontal, vertical).normalized;
 
             // Si le joueur appuie sur la touche de dash et que la direction est valide
-            if (Input.GetButtonDown("Dash") && Input.GetKeyDown(KeyCode.LeftShift) && direction != Vector2.zero)
+            if (Input.GetButtonDown("Dash") && direction != Vector2.zero)
             {
                 // Normaliser la direction pour éviter les deplacements excessifs en diagonale
                 if (direction.magnitude > 1f)
@@ -63,14 +68,19 @@ public class Dash : MonoBehaviour
                 dashCooldownTimer = dashCooldown;
                 tr.emitting = true;
                 isDashing = true;
+                // Changer le sprite renderer pour le sprite de dash
+                spriteRenderer.sprite = dashSprite;
+
+                Invoke("RestoreDefaultSprite", 0.5f);
+
                 //devenir invincible pendant le Dash
                 this.GetComponentInParent<playerHealth>().imune = true;
                 StartCoroutine(Dashing());
-                
+               
             }
 
         }
-        if (Input.GetButtonUp("Dash") && Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetButtonUp("Dash"))
         {
             tr.emitting = false;
         }
@@ -80,9 +90,10 @@ public class Dash : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         isDashing = false;
+        spriteRenderer.sprite = defaultSprite;
         this.GetComponentInParent<playerHealth>().imune = false ;
     }
-    
+
     void FixedUpdate()
     {
         // Si le joueur est en train de dasher, le déplacer
@@ -105,5 +116,23 @@ public class Dash : MonoBehaviour
             Vector2 target_velocity = new Vector2(horizontal_value * moveSpeed_horizontal * Time.fixedDeltaTime, rb.velocity.y);
             return;
         }
+
+        if (dashDirection != Vector2.zero)
+        {
+            Vector2 targetPosition = rb.position + dashDirection * dashDistance;
+            rb.MovePosition(targetPosition);
+
+            if (dashDirection.x != 0f)
+            {
+                spriteTransform.localScale = new Vector3(Mathf.Sign(dashDirection.x), 1f, 1f);
+            }
+        }
+         
+
+    }
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteTransform = GetComponent<Transform>();
     }
 }
