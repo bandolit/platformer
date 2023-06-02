@@ -36,10 +36,10 @@ public class BossBattle : MonoBehaviour
     {
         enemySpawnList = new List<GameObject>();
 
-        //foreach (Transform spawnPosition in transform.Find("spawnPositions"))
-        //{
-        //    spawnPositionList.Add(spawnPosition.position);
-        //}
+        foreach (Transform spawnPosition in transform.Find("spawnPositions"))
+        {
+            //spawnPositionList.Add(spawnPosition.position);
+        }
 
         stage = Stage.WaitingToStart;
     }
@@ -155,20 +155,20 @@ public class BossBattle : MonoBehaviour
             }
         }
 
-        //Transform spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
+        Transform spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
 
-        //foreach (Transform Spawn in PastspawnPosition)
-        //{
-        //    if (spawnPosition == Spawn)
-        //    {
-        //        spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
-        //    }
-        //}
+        foreach (Transform Spawn in PastspawnPosition)
+        {
+            if (spawnPosition == Spawn)
+            {
+               spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
+           }
+        }
         
 
-        //GameObject enemySpawn = Instantiate(pfEnemyShooterSpawn, spawnPosition.position, Quaternion.identity);
+        GameObject enemySpawn = Instantiate(pfEnemyShooterSpawn, spawnPosition.position, Quaternion.identity);
         //enemySpawn.Spawn();
-        //enemySpawnList.Add(enemySpawn);
+        enemySpawnList.Add(enemySpawn);
     }
 
 
