@@ -49,7 +49,7 @@ public class rewind : MonoBehaviour
             rewinding = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("rewind"))
         {
             rewinding = true;
             tabPositions.ToArray();

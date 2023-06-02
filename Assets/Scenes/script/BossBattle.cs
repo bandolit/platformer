@@ -31,6 +31,9 @@ public class BossBattle : MonoBehaviour
     [SerializeField] private GameObject batt3;
     [SerializeField] private GameObject batt4;
 
+    [SerializeField] private GameObject[] test;
+
+    private int nbPerWave = 3;
 
     private void Awake()
     {
@@ -46,6 +49,7 @@ public class BossBattle : MonoBehaviour
 
     private void Start()
     {
+        //SpawnEnemy();
         StartBattle();
         shield_1.SetActive(false);
         shield_2.SetActive(false);
@@ -63,6 +67,17 @@ public class BossBattle : MonoBehaviour
         }
         BossBattle_OnDamaged();
        
+       
+    }
+
+    private void Update()
+    {
+        test = GameObject.FindGameObjectsWithTag("mechant");
+
+        if(test.Length < nbPerWave)
+        {
+            SpawnEnemy();
+        }
     }
 
     private void BossBattle_OnDead()
@@ -120,12 +135,14 @@ public class BossBattle : MonoBehaviour
             case Stage.WaitingToStart:
                 stage = Stage.Stage_1;
 
-                SpawnEnemy();
-                SpawnEnemy();
+                nbPerWave = 0;
 
                 break;
 
             case Stage.Stage_1:
+
+                nbPerWave = 3;
+
                 stage = Stage.Stage_2;
                 shield_1.SetActive(true);
 
@@ -133,6 +150,8 @@ public class BossBattle : MonoBehaviour
                 break;
 
             case Stage.Stage_2:
+
+
                 stage = Stage.Stage_3;
                 Debug.Log("WTF");
                 shield_2.SetActive(true);
@@ -143,7 +162,7 @@ public class BossBattle : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        int aliveCount = 0;
+       /** int aliveCount = 0;
         foreach (GameObject Enemy in enemySpawnList)
         {
             // Enemy alive
@@ -153,22 +172,23 @@ public class BossBattle : MonoBehaviour
                 // Don't spawn more enemies
                 return;
             }
-        }
+        }*/
 
         Transform spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
 
-        foreach (Transform Spawn in PastspawnPosition)
+        /**foreach (Transform Spawn in PastspawnPosition)
         {
             if (spawnPosition == Spawn)
             {
                spawnPosition = spawnPositionList[UnityEngine.Random.Range(0, spawnPositionList.Count)];
            }
-        }
+        }*/
         
 
         GameObject enemySpawn = Instantiate(pfEnemyShooterSpawn, spawnPosition.position, Quaternion.identity);
         //enemySpawn.Spawn();
-        enemySpawnList.Add(enemySpawn);
+
+        //enemySpawnList.Add(enemySpawn);
     }
 
 

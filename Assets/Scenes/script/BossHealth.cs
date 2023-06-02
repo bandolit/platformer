@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossHealth : MonoBehaviour
 {
     public int maxHealth = 1000;
     public int currentHealth;
     public bool imune;
+    public int sceneBuildIndex;
 
     public HealthBar Hb;
 
@@ -27,7 +29,9 @@ public class BossHealth : MonoBehaviour
             Hb.SetHealth(currentHealth);
             if (currentHealth <= 0)
             {
-                Destroy(gameObject);
+                SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+                Debug.Log("trouduku");
+                //Destroy(gameObject);
             }
 
         }

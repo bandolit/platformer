@@ -8,7 +8,7 @@ public class fondu : MonoBehaviour
     public string sceneName; // Le nom de la scène à charger
     public float fadeDuration = 1f; // La durée du fondu en secondes
     [SerializeField] Image fadeImage; // L'image utilisée pour le fondu (assure-toi qu'elle remplit l'écran)
-
+    public int sceneBuildIndex;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -33,7 +33,7 @@ public class fondu : MonoBehaviour
         fadeImage.color = Color.black;
 
         // Chargement de la nouvelle scène
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
 
         // Fondu en fondu de la nouvelle scène
         timer = 0f;
